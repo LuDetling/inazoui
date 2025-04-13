@@ -5048,3 +5048,4 @@ INSERT INTO public.media (id, user_id, path, title, album_id) VALUES (19, 1, 'up
 INSERT INTO public.media (id, user_id, path, title, album_id) VALUES (16, 1, 'uploads/0016.jpg', 'Titre 15', 2);
 INSERT INTO public.media (id, user_id, path, title, album_id) VALUES (50, 1, 'uploads/0050.jpg', 'Titre 49', 5);
 INSERT INTO public.media (id, user_id, path, title, album_id) VALUES (20, 1, 'uploads/0020.jpg', 'Titre 19', 2);
+SELECT setval('media_id_seq', (SELECT MAX(id) FROM media));

@@ -22,7 +22,7 @@ class MediaType extends AbstractType
                 'label' => 'Image',
                 'constraints' => [
                     new ConstraintsFile([
-                        'maxSize' => '2048k',
+                        'maxSize' => '2M',
                         'mimeTypes' => [
                             'image/png',
                             'image/jpeg',
@@ -33,8 +33,7 @@ class MediaType extends AbstractType
             ])
             ->add('title', TextType::class, [
                 'label' => 'Titre',
-            ])
-        ;
+            ]);
 
         if ($options['is_admin']) {
             $builder
