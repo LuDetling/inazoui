@@ -6,6 +6,7 @@ use App\Entity\Album;
 use App\Entity\Media;
 use App\Entity\User;
 use App\Repository\AlbumRepository;
+use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
-    public function __construct(private AlbumRepository $albumRepository, private UserRepository $userRepository)
+    public function __construct(private AlbumRepository $albumRepository, private UserRepository $userRepository, private MediaRepository $mediaRepository)
     {
     }
 
@@ -53,8 +54,8 @@ class HomeController extends AbstractController
         $user = $this->userRepository->findOneByAdmin(true);
 
         $medias = $album
-            ? $this->albumRepository->findByAlbum($album)
-            : $this->albumRepository->findByUser($user);
+        ? $this->mediaRepository->findByAlbum($album)
+        : $this->mediaRepository->findByUser($user);
         return $this->render('front/portfolio.html.twig', [
             'albums' => $albums,
             'album' => $album,
