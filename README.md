@@ -9,10 +9,11 @@ Faudrait peut être trouver une meilleure solution car le fichier est très gros
 
 # Installation
 modifier la base de donnée dans le fichier .env
+symfony console doctrine:database:drop --force
 symfony console doctrine:database:create
 symfony console doctrine:migration:migrate
 
 # Pour dump
-psql -U postgres -d ina_zaoui -f .\public\user.sql
+symfony console doctrine:fixtures:load
 psql -U postgres -d ina_zaoui -f .\public\album.sql
 psql -U postgres -d ina_zaoui -f .\public\media.sql
