@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
@@ -33,14 +35,18 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-    public function findByRoleAdmin()
+    public function paginateUser(Request $request, int $page = 1, int $limit = 10): Paginator
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.roles::jsonb ? :role')
-            ->setParameter('role', '"ROLE_ADMIN"')
-            ->getQuery()
-            ->getResult()
-        ;
+        $queryBuilder = $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'ASC')
+            ->setFirstResult(0)
+            ->setMaxResults($limit);
+
+        $paginator = new Paginator($queryBuilder);
+        // $paginator->setPage($page);
+        // $paginator->setLimit($limit);
+
+        return $paginator;
     }
 
     //    /**
