@@ -5,5 +5,4 @@
 	{{ form_widget(form) }}
 	<button type="submit" class="btn btn-primary">Modifier</button>
 	{{ form_end(form) }}
-	<a href="{{ path('admin_guest_block', {id}) }}" class="btn btn-primary">{{blocked ? 'Débloquer' : 'Bloquer'}}</a>
 {% endblock %}

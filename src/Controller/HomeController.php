@@ -48,14 +48,18 @@ class HomeController extends AbstractController
     #[Route("/portfolio/{id}", name: "portfolio")]
     public function portfolio(?int $id = null)
     {
-        // $albums = $this->getDoctrine()->getRepository(Album::class)->findAll();
         $albums = $this->albumRepository->findAll();
         $album = $id ? $this->albumRepository->find($id) : null;
         $user = $this->userRepository->findOneByAdmin(true);
 
+        $isActive = $this->userRepository->findBy(['isActive' => true]);
+
         $medias = $album
-        ? $this->mediaRepository->findByAlbum($album)
-        : $this->mediaRepository->findByUser($user);
+            ? $this->mediaRepository->findBy([
+                'album' => $album,
+                'user' => $isActive
+            ])
+            : $this->mediaRepository->findByUser($user);
         return $this->render('front/portfolio.html.twig', [
             'albums' => $albums,
             'album' => $album,

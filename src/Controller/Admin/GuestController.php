@@ -102,19 +102,4 @@ final class GuestController extends AbstractController
             'roles' => $roles,
         ]);
     }
-
-    #[Route('/admin/guest/block/{id}', name: 'admin_guest_block')]
-    public function blockGuest(int $id): Response
-    {
-        $user = $this->userRepository->find($id);
-        $roles = $user->getRoles();
-        if (in_array('ROLE_BLOCKED', $roles)) {
-            $user->setRoles([]);
-            $this->entityManager->flush();
-            return $this->redirectToRoute('admin_guest_update', ['id' => $id]);
-        }
-        $user->setRoles(['ROLE_BLOCKED']);
-        $this->entityManager->flush();
-        return $this->redirectToRoute('admin_guest_update', ['id' => $id]);
-    }
 }
