@@ -27,13 +27,14 @@
                         <td>{{ media.album.name ?? '' }}</td>
                     {% endif %}
                     <td>
+                        <a href="{{ path('admin_media_update', {id: media.id}) }}" class="btn btn-primary">Modifier</a>
                         <a href="{{ path('admin_media_delete', {id: media.id}) }}" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    {% set totalPages = (total / 50)|round(0, 'ceil') %}
+    {% set totalPages = (total / 25)|round(0, 'ceil') %}
 
     <nav aria-label="Page navigation">
         <ul class="pagination">

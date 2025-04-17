@@ -25,7 +25,8 @@ class MediaType extends AbstractType
                     new ConstraintsImage([
                         'maxSize' => '2M',
                         'maxSizeMessage' => 'La taille de l\'image ne doit pas dépasser 2 Mo.',])
-                ]
+                    ],
+                    'required' => false,
             ])
             ->add('title', TextType::class, [
                 'label' => 'Titre',

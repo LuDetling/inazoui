@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 final class GuestController extends AbstractController
 {
     public function __construct(
@@ -20,7 +22,7 @@ final class GuestController extends AbstractController
     {
         // Constructor logic if needed
     }
-    #[Route('/admin/guest', name: 'admin_guest_index')]
+    #[Route('/admin/guests', name: 'admin_guest_index')]
     public function index(Request $request): Response
     {
         $user = $this->getUser();

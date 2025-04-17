@@ -9,6 +9,7 @@ use App\Repository\AlbumRepository;
 use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -25,11 +26,21 @@ class HomeController extends AbstractController
     }
 
     #[Route('/guests', name: 'guests')]
-    public function guests()
+    public function guests(Request $request)
     {
-        $guests = $this->userRepository->findBy(['admin' => false]);
+        $page = $request->query->getInt('page', 1);
+        $total =$this->userRepository->count(['admin' => false]);
+        $guests = $this->userRepository->findBy(
+            ['admin' => false],
+            ['id' => 'DESC'],
+            limit: 10,
+            offset: 10 * ($page - 1)
+        );
+
         return $this->render('front/guests.html.twig', [
-            'guests' => $guests
+            'guests' => $guests,
+            'total' => $total,
+            'page' => $page,
         ]);
     }
 

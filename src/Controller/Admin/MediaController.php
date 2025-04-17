@@ -33,7 +33,7 @@ class MediaController extends AbstractController
             25,
             25 * ($page - 1)
         );
-        $total = $this->mediaRepository->count([]);
+        $total = $this->mediaRepository->count($criteria);
 
         return $this->render('admin/media/index.html.twig', [
             'medias' => $medias,
@@ -72,5 +72,28 @@ class MediaController extends AbstractController
         unlink($media->getPath());
 
         return $this->redirectToRoute('admin_media_index');
+    }
+
+    #[Route("/admin/media/update/{id}", name: "admin_media_update")]
+    public function update(Request $request, int $id)
+    {
+        $media = $this->mediaRepository->find($id);
+        $form = $this->createForm(MediaType::class, $media, ['is_admin' => $this->isGranted('ROLE_ADMIN')]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if (!$this->isGranted('ROLE_ADMIN')) {
+                $media->setUser($this->getUser());
+            }
+            if ($media->getFile()) {
+                unlink($media->getPath());
+                $media->setPath('uploads/' . md5(uniqid()) . '.' . $media->getFile()->guessExtension());
+                $media->getFile()->move('uploads/', $media->getPath());
+            }
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('admin_media_index');
+        }
+
+        return $this->render('admin/media/update.html.twig', ['form' => $form->createView()]);
     }
 }
