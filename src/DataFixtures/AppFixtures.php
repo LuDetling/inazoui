@@ -13,8 +13,7 @@ class AppFixtures extends Fixture
 {
     public function __construct(
         private UserPasswordHasherInterface $hasher
-    ) {
-    }
+    ) {}
     public function load(ObjectManager $manager): void
     {
         // Create 5 albums
@@ -26,6 +25,7 @@ class AppFixtures extends Fixture
             $albums[] = $album;
         }
 
+        $users = [];
         // Create 1 admin user
         $admin = new User();
         $admin->setName("ina")
@@ -35,8 +35,9 @@ class AppFixtures extends Fixture
             ->setAdmin(true);
         $manager->persist($admin);
 
-        // Create 100 users
-        for ($i = 0; $i < 20; $i++) {
+
+        // Create 50 users
+        for ($i = 0; $i < 50; $i++) {
             $user = new User();
             $user->setName("Invité" . $i)
                 ->setEmail("Invite" . $i . "@email.com")
@@ -44,13 +45,19 @@ class AppFixtures extends Fixture
                 ->setAdmin(false)
                 ->setDescription("Le maître de l''urbanité capturée, explore les méandres des cités avec un regard vif et impétueux, figeant l''énergie des rues dans des instants éblouissants. À travers une technique avant-gardiste, il métamorphose le béton et l''acier en toiles abstraites, révélant l''essence même de l''architecture moderne. Ses clichés transcendent les formes familières pour révéler des perspectives inattendues, offrant une vision nouvelle et captivante du monde urbain.");
             $manager->persist($user);
+            $users[] = $user;
         }
-        
         // Create 50 media
-        for ($i = 1; $i < 51; $i++) {
+        for ($i = 1; $i < 200; $i++) {
             $media = new Media();
-            $media->setAlbum($albums[rand(0, 4)]);
-            $media->setUser($admin);
+            if (!($i % 8)) {
+                $media->setAlbum($albums[rand(0, 4)]);
+            }
+            if ($i < 15) {
+                $media->setUser($admin);
+            } else {
+                $media->setUser($users[array_rand($users)]);
+            }
             $media->setPath("/fixtures/" . str_pad($i, 4, '0', STR_PAD_LEFT) . ".jpg");
             $media->setTitle("Image " . $i);
             $manager->persist($media);

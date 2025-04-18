@@ -8,16 +8,11 @@ use PHPUnit\Framework\TestCase;
 class AlbumTest extends TestCase
 {
 
-    public function getAlbum(): Album
+    public function testAlbum(): void
     {
         $album = new Album();
+
         $album->setName('Album 1');
-        return $album;
-    }
-    public function testCreateAlbum(): void
-    {
-        $album = $this->getAlbum();
-        self::assertInstanceOf(Album::class, $album);
-        self::assertEquals("Album 1", $album->getName());
+        $this->assertEquals('Album 1', $album->getName());
     }
 }

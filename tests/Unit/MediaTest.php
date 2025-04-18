@@ -10,23 +10,21 @@ use PHPUnit\Framework\TestCase;
 class MediaTest extends TestCase
 {
 
-    public function getMedia(): Media
+    public function testMedia(): void
     {
         $media = new Media();
+
         $media->setPath('/fixtures/0001.jpg');
+        $this->assertEquals('/fixtures/0001.jpg', $media->getPath());
+
         $media->setTitle('Image 1');
+        $this->assertEquals('Image 1', $media->getTitle());
+
         $media->setUser(new User());
+        $this->assertInstanceOf(User::class, $media->getUser());
+
         $media->setAlbum(new Album());
-        return $media;
+        $this->assertInstanceOf(Album::class, $media->getAlbum());
     }
 
-    public function testMediaIsValid(): void
-    {
-        $media = $this->getMedia();
-        self::assertEquals('/fixtures/0001.jpg', $media->getPath());
-        self::assertEquals('Image 1', $media->getTitle());
-        self::assertInstanceOf(User::class, $media->getUser());
-        self::assertInstanceOf(Media::class, $media);
-        self::assertInstanceOf(Album::class, $media->getAlbum());
-    }
 }
