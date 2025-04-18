@@ -45,6 +45,7 @@ class AppFixtures extends Fixture
                 ->setDescription("Le maître de l''urbanité capturée, explore les méandres des cités avec un regard vif et impétueux, figeant l''énergie des rues dans des instants éblouissants. À travers une technique avant-gardiste, il métamorphose le béton et l''acier en toiles abstraites, révélant l''essence même de l''architecture moderne. Ses clichés transcendent les formes familières pour révéler des perspectives inattendues, offrant une vision nouvelle et captivante du monde urbain.");
             $manager->persist($user);
         }
+        
         // Create 50 media
         for ($i = 1; $i < 51; $i++) {
             $media = new Media();

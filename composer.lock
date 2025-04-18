@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "76ae7d0d6badb6afba282bd534cf9ed0",
+    "content-hash": "61d5e98fb3404fefbb48dcec41da109e",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -81,99 +81,6 @@
                 "source": "https://github.com/doctrine/annotations/tree/2.0.2"
             },
             "time": "2024-09-05T10:17:24+00:00"
-        },
-        {
-            "name": "doctrine/cache",
-            "version": "2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/doctrine/cache.git",
-                "reference": "1ca8f21980e770095a31456042471a57bc4c68fb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/1ca8f21980e770095a31456042471a57bc4c68fb",
-                "reference": "1ca8f21980e770095a31456042471a57bc4c68fb",
-                "shasum": ""
-            },
-            "require": {
-                "php": "~7.1 || ^8.0"
-            },
-            "conflict": {
-                "doctrine/common": ">2.2,<2.4"
-            },
-            "require-dev": {
-                "cache/integration-tests": "dev-master",
-                "doctrine/coding-standard": "^9",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
-                "psr/cache": "^1.0 || ^2.0 || ^3.0",
-                "symfony/cache": "^4.4 || ^5.4 || ^6",
-                "symfony/var-exporter": "^4.4 || ^5.4 || ^6"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
-                    "name": "Roman Borschel",
-                    "email": "roman@code-factory.org"
-                },
-                {
-                    "name": "Benjamin Eberlei",
-                    "email": "kontakt@beberlei.de"
-                },
-                {
-                    "name": "Jonathan Wage",
-                    "email": "jonwage@gmail.com"
-                },
-                {
-                    "name": "Johannes Schmitt",
-                    "email": "schmittjoh@gmail.com"
-                }
-            ],
-            "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
-            "homepage": "https://www.doctrine-project.org/projects/cache.html",
-            "keywords": [
-                "abstraction",
-                "apcu",
-                "cache",
-                "caching",
-                "couchdb",
-                "memcached",
-                "php",
-                "redis",
-                "xcache"
-            ],
-            "support": {
-                "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/2.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcache",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-05-20T20:07:39+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -263,45 +170,40 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "3.9.4",
+            "version": "4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "ec16c82f20be1a7224e65ac67144a29199f87959"
+                "reference": "33d2d7fe1269b2301640c44cf2896ea607b30e3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/ec16c82f20be1a7224e65ac67144a29199f87959",
-                "reference": "ec16c82f20be1a7224e65ac67144a29199f87959",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/33d2d7fe1269b2301640c44cf2896ea607b30e3e",
+                "reference": "33d2d7fe1269b2301640c44cf2896ea607b30e3e",
                 "shasum": ""
             },
             "require": {
-                "composer-runtime-api": "^2",
-                "doctrine/cache": "^1.11|^2.0",
                 "doctrine/deprecations": "^0.5.3|^1",
-                "doctrine/event-manager": "^1|^2",
-                "php": "^7.4 || ^8.0",
+                "php": "^8.1",
                 "psr/cache": "^1|^2|^3",
                 "psr/log": "^1|^2|^3"
             },
             "require-dev": {
                 "doctrine/coding-standard": "12.0.0",
                 "fig/log-test": "^1",
-                "jetbrains/phpstorm-stubs": "2023.1",
+                "jetbrains/phpstorm-stubs": "2023.2",
                 "phpstan/phpstan": "2.1.1",
+                "phpstan/phpstan-phpunit": "2.0.3",
                 "phpstan/phpstan-strict-rules": "^2",
-                "phpunit/phpunit": "9.6.22",
+                "phpunit/phpunit": "10.5.39",
                 "slevomat/coding-standard": "8.13.1",
                 "squizlabs/php_codesniffer": "3.10.2",
-                "symfony/cache": "^5.4|^6.0|^7.0",
-                "symfony/console": "^4.4|^5.4|^6.0|^7.0"
+                "symfony/cache": "^6.3.8|^7.0",
+                "symfony/console": "^5.4|^6.3|^7.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
             },
-            "bin": [
-                "bin/doctrine-dbal"
-            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -354,7 +256,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.9.4"
+                "source": "https://github.com/doctrine/dbal/tree/4.2.3"
             },
             "funding": [
                 {
@@ -370,30 +272,33 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-16T08:28:55+00:00"
+            "time": "2025-03-07T18:29:05+00:00"
         },
         {
             "name": "doctrine/deprecations",
-            "version": "1.1.4",
+            "version": "1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/deprecations.git",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9"
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/31610dbb31faa98e6b5447b62340826f54fbc4e9",
-                "reference": "31610dbb31faa98e6b5447b62340826f54fbc4e9",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
+                "reference": "459c2f5dd3d6a4633d3b5f46ee2b1c40f57d3f38",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0"
             },
+            "conflict": {
+                "phpunit/phpunit": "<=7.5 || >=13"
+            },
             "require-dev": {
-                "doctrine/coding-standard": "^9 || ^12",
-                "phpstan/phpstan": "1.4.10 || 2.0.3",
+                "doctrine/coding-standard": "^9 || ^12 || ^13",
+                "phpstan/phpstan": "1.4.10 || 2.1.11",
                 "phpstan/phpstan-phpunit": "^1.0 || ^2",
-                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.6 || ^10.5 || ^11.5 || ^12",
                 "psr/log": "^1 || ^2 || ^3"
             },
             "suggest": {
@@ -413,9 +318,9 @@
             "homepage": "https://www.doctrine-project.org/",
             "support": {
                 "issues": "https://github.com/doctrine/deprecations/issues",
-                "source": "https://github.com/doctrine/deprecations/tree/1.1.4"
+                "source": "https://github.com/doctrine/deprecations/tree/1.1.5"
             },
-            "time": "2024-12-07T21:18:45+00:00"
+            "time": "2025-04-07T20:06:18+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1522,16 +1427,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.6.1",
+            "version": "5.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8"
+                "reference": "92dde6a5919e34835c506ac8c523ef095a95ed62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8",
-                "reference": "e5e784149a09bd69d9a5e3b01c5cbd2e2bd653d8",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/92dde6a5919e34835c506ac8c523ef095a95ed62",
+                "reference": "92dde6a5919e34835c506ac8c523ef095a95ed62",
                 "shasum": ""
             },
             "require": {
@@ -1580,9 +1485,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.6.1"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.6.2"
             },
-            "time": "2024-12-07T09:39:29+00:00"
+            "time": "2025-04-13T19:20:35+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -7388,6 +7293,73 @@
     ],
     "packages-dev": [
         {
+            "name": "dama/doctrine-test-bundle",
+            "version": "v8.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dmaicher/doctrine-test-bundle.git",
+                "reference": "eefe54fdf00d910f808efea9cfce9cc261064a0a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dmaicher/doctrine-test-bundle/zipball/eefe54fdf00d910f808efea9cfce9cc261064a0a",
+                "reference": "eefe54fdf00d910f808efea9cfce9cc261064a0a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3.3 || ^4.0",
+                "doctrine/doctrine-bundle": "^2.11.0",
+                "php": "^7.4 || ^8.0",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
+                "symfony/cache": "^5.4 || ^6.3 || ^7.0",
+                "symfony/framework-bundle": "^5.4 || ^6.3 || ^7.0"
+            },
+            "require-dev": {
+                "behat/behat": "^3.0",
+                "friendsofphp/php-cs-fixer": "^3.27",
+                "phpstan/phpstan": "^2.0",
+                "phpunit/phpunit": "^8.0 || ^9.0 || ^10.0 || ^11.0",
+                "symfony/phpunit-bridge": "^7.2",
+                "symfony/process": "^5.4 || ^6.3 || ^7.0",
+                "symfony/yaml": "^5.4 || ^6.3 || ^7.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "8.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "DAMA\\DoctrineTestBundle\\": "src/DAMA/DoctrineTestBundle"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Maicher",
+                    "email": "mail@dmaicher.de"
+                }
+            ],
+            "description": "Symfony bundle to isolate doctrine database tests and improve test performance",
+            "keywords": [
+                "doctrine",
+                "isolation",
+                "performance",
+                "symfony",
+                "testing",
+                "tests"
+            ],
+            "support": {
+                "issues": "https://github.com/dmaicher/doctrine-test-bundle/issues",
+                "source": "https://github.com/dmaicher/doctrine-test-bundle/tree/v8.2.2"
+            },
+            "time": "2025-02-04T14:37:36+00:00"
+        },
+        {
             "name": "doctrine/data-fixtures",
             "version": "2.0.2",
             "source": {
@@ -9827,7 +9799,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -9835,6 +9807,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
