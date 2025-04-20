@@ -4,14 +4,14 @@ namespace App\Tests\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class GuestTest extends WebTestCase
+class HomePageTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testHomePage(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/guests');
+        $crawler = $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h3', 'Invités');
+        $this->assertSelectorTextContains('h2', 'Photographe');
     }
 }
