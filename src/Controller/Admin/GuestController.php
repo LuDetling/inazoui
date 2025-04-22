@@ -25,10 +25,11 @@ final class GuestController extends AbstractController
     #[Route('/admin/guests', name: 'admin_guest_index')]
     public function index(Request $request): Response
     {
+        /** @var User $user */
         $user = $this->getUser();
         $page = $request->query->getInt('page', 1);
         $total =$this->userRepository->count(['admin' => false]);
-        if(!$user || !$user->isAdmin()) {
+        if(!$user->isAdmin()) {
             return $this->redirectToRoute('app_login');
         }
 

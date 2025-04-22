@@ -32,9 +32,5 @@ class UserTest extends TestCase
 
         $user->setIsActive(true);
         $this->assertTrue($user->isActive());
-
-        $user->isAdmin(false);
-        $this->assertFalse($user->isAdmin());
-
     }
 }

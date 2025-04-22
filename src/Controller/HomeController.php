@@ -61,7 +61,7 @@ class HomeController extends AbstractController
     {
         $albums = $this->albumRepository->findAll();
         $album = $id ? $this->albumRepository->find($id) : null;
-        $user = $this->userRepository->findOneByAdmin(true);
+        $user = $this->userRepository->findOneBy(['admin' => true]);
 
         $isActive = $this->userRepository->findBy(['isActive' => true]);
 
@@ -70,7 +70,7 @@ class HomeController extends AbstractController
                 'album' => $album,
                 'user' => $isActive
             ])
-            : $this->mediaRepository->findByUser($user);
+            : $this->mediaRepository->findBy(['user' => $user]);
         return $this->render('front/portfolio.html.twig', [
             'albums' => $albums,
             'album' => $album,
