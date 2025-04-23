@@ -20,8 +20,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private int $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private ?string $email;
+    private string $email;
 
+    /**
+     * @var array<string>
+     */
     #[ORM\Column(type: 'json')]
     private array $roles = [];
 
@@ -29,19 +32,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private string $password;
 
     #[ORM\Column(length: 255)]
-    private ?string $name = null;
+    private string $name;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
+
+    /**
+     * @var Collection<int, Media>
+     */
     #[ORM\OneToMany(targetEntity: Media::class, mappedBy: 'user', cascade: ['persist', 'remove'])]
-    
     private Collection $medias;
 
     #[ORM\Column]
     private bool $admin = false;
 
     #[ORM\Column]
-    private ?bool $isActive = true;
+    private bool $isActive = true;
 
     public function __construct()
     {
@@ -87,6 +93,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
+    /**
+     * @param string[] $roles
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -141,11 +150,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    /**
+     * Summary of getMedias
+     * @return Collection<int, Media>
+     */
     public function getMedias(): Collection
     {
         return $this->medias;
     }
 
+    /**
+     * Summary of setMedias
+     * @param \Doctrine\Common\Collections\Collection $medias
+     * @return void
+     */
     public function setMedias(Collection $medias): void
     {
         $this->medias = $medias;

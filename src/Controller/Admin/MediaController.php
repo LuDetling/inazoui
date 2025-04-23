@@ -3,21 +3,24 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Media;
+use App\Entity\User;
 use App\Form\MediaType;
 use App\Repository\MediaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MediaController extends AbstractController
 {
     public function __construct(private MediaRepository $mediaRepository, private EntityManagerInterface $entityManager)
     {
-        
+
     }
     #[Route("/admin/media", name: "admin_media_index")]
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
 
@@ -43,14 +46,18 @@ class MediaController extends AbstractController
     }
 
     #[Route("/admin/media/add", name: "admin_media_add")]
-    public function add(Request $request)
+    public function add(Request $request): RedirectResponse|Response
     {
+        /**
+         * @var User $user;
+         */
+        $user = $this->getUser();
         $media = new Media();
         $form = $this->createForm(MediaType::class, $media, ['is_admin' => $this->isGranted('ROLE_ADMIN')]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->isGranted('ROLE_ADMIN')) {
-                $media->setUser($this->getUser());
+                $media->setUser($user);
             }
             $media->setPath('uploads/' . md5(uniqid()) . '.' . $media->getFile()->guessExtension());
             $media->getFile()->move('uploads/', $media->getPath());
@@ -64,7 +71,7 @@ class MediaController extends AbstractController
     }
 
     #[Route("/admin/media/delete/{id}", name: "admin_media_delete")]
-    public function delete(int $id)
+    public function delete(int $id): RedirectResponse
     {
         $media = $this->mediaRepository->find($id);
         $this->entityManager->remove($media);
@@ -75,14 +82,18 @@ class MediaController extends AbstractController
     }
 
     #[Route("/admin/media/update/{id}", name: "admin_media_update")]
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): RedirectResponse|Response
     {
+        /**
+         * @var User $user;
+         */
+        $user = $this->getUser();
         $media = $this->mediaRepository->find($id);
         $form = $this->createForm(MediaType::class, $media, ['is_admin' => $this->isGranted('ROLE_ADMIN')]);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             if (!$this->isGranted('ROLE_ADMIN')) {
-                $media->setUser($this->getUser());
+                $media->setUser($user);
             }
             if ($media->getFile()) {
                 unlink($media->getPath());

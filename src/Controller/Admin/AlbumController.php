@@ -9,7 +9,9 @@ use App\Form\MediaType;
 use App\Repository\AlbumRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -23,7 +25,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route("/admin/album", name: "admin_album_index")]
-    public function index()
+    public function index(): Response
     {
         $albums = $this->albumRepository->findAll();
 
@@ -31,7 +33,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route("/admin/album/add", name: "admin_album_add")]
-    public function add(Request $request)
+    public function add(Request $request): RedirectResponse|Response
     {
         $album = new Album();
         $form = $this->createForm(AlbumType::class, $album);
@@ -48,7 +50,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route("/admin/album/update/{id}", name: "admin_album_update")]
-    public function update(Request $request, int $id)
+    public function update(Request $request, int $id): Response
     {
         $album = $this->albumRepository->find($id);
         $form = $this->createForm(AlbumType::class, $album);
@@ -64,7 +66,7 @@ class AlbumController extends AbstractController
     }
 
     #[Route("/admin/album/delete/{id}", name: "admin_album_delete")]
-    public function delete(int $id)
+    public function delete(int $id): RedirectResponse
     {
         $media = $this->albumRepository->find($id);
         $this->entityManager->remove($media);

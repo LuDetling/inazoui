@@ -7,6 +7,7 @@ use App\Form\GuestType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -48,7 +49,8 @@ final class GuestController extends AbstractController
     }
 
     #[Route('/admin/guest/delete/{id}', name: 'admin_guest_delete')]
-    public function deleteGuest(int $id){
+    public function deleteGuest(int $id): RedirectResponse
+    {
         $user = $this->userRepository->find($id);
         $this->entityManager->remove($user);
         $this->entityManager->flush();

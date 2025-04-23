@@ -35,6 +35,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    /**
+     * Summary of paginateUser
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param int $page
+     * @param int $limit
+     * @return Paginator<T>
+     */
     public function paginateUser(Request $request, int $page = 1, int $limit = 10): Paginator
     {
         $queryBuilder = $this->createQueryBuilder('u')

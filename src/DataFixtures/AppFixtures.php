@@ -58,7 +58,7 @@ class AppFixtures extends Fixture
             } else {
                 $media->setUser($users[array_rand($users)]);
             }
-            $media->setPath("/fixtures/" . str_pad($i, 4, '0', STR_PAD_LEFT) . ".jpg");
+            $media->setPath("/fixtures/" . str_pad("$i", 4, '0', STR_PAD_LEFT) . ".jpg");
             $media->setTitle("Image " . $i);
             $manager->persist($media);
         }

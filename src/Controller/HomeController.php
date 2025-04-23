@@ -10,6 +10,7 @@ use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -20,13 +21,13 @@ class HomeController extends AbstractController
     }
 
     #[Route('/', name: 'home')]
-    public function home()
+    public function home(): Response
     {
         return $this->render('front/home.html.twig');
     }
 
     #[Route('/guests', name: 'guests')]
-    public function guests(Request $request)
+    public function guests(Request $request): Response
     {
         $page = $request->query->getInt('page', 1);
         $total =$this->userRepository->count(['admin' => false]);
@@ -45,7 +46,7 @@ class HomeController extends AbstractController
     }
 
     #[Route('/guest/{id}', name: 'guest')]
-    public function guest(int $id)
+    public function guest(int $id): Response
     {
         $guest = $this->userRepository->find($id);
         return $this->render('front/guest.html.twig', [
@@ -57,7 +58,7 @@ class HomeController extends AbstractController
      * @Route("/portfolio/{id}", name="portfolio")
      */
     #[Route("/portfolio/{id}", name: "portfolio")]
-    public function portfolio(?int $id = null)
+    public function portfolio(?int $id = null): Response
     {
         $albums = $this->albumRepository->findAll();
         $album = $id ? $this->albumRepository->find($id) : null;
@@ -79,7 +80,7 @@ class HomeController extends AbstractController
     }
 
     #[Route("/about", name: "about")]
-    public function about()
+    public function about(): Response
     {
         return $this->render('front/about.html.twig');
     }
