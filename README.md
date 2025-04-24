@@ -9,9 +9,15 @@ Faudrait peut être trouver une meilleure solution car le fichier est très gros
 
 # Installation
 modifier la base de donnée dans le fichier .env
-symfony console doctrine:database:drop --force
+symfony console doctrine:database:drop -f --if-exists --force
 symfony console doctrine:database:create
 symfony console doctrine:migration:migrate
+symfony console doctrine:fixtures:load
+
+symfony console doctrine:database:drop -f --if-exists --env=test
+symfony console doctrine:database:create --env=test
+symfony console doctrine:migrations:migrate -n --env=test
+symfony console doctrine:fixtures:load -n --purge-with-truncate --env=test
 
 # Pour dump
 symfony console doctrine:fixtures:load

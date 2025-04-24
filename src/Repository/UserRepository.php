@@ -36,11 +36,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
     /**
-     * Summary of paginateUser
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @param int $page
-     * @param int $limit
-     * @return Paginator<T>
+     * @return Paginator<User>
      */
     public function paginateUser(Request $request, int $page = 1, int $limit = 10): Paginator
     {

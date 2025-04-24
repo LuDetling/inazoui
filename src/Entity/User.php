@@ -161,9 +161,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * Summary of setMedias
-     * @param \Doctrine\Common\Collections\Collection $medias
-     * @return void
+     * @param Collection<int, Media> $medias
      */
     public function setMedias(Collection $medias): void
     {
