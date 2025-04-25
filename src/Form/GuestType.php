@@ -21,12 +21,15 @@ class GuestType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Entrer votre email',
                 ],
+                'required'  => false,
             ])
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'attr' => [
                     'placeholder' => 'Entrer votre mot de passe',
                 ],
+                'required'  => false,
+                'mapped' => false,
             ])
             ->add('name', TextType::class, [
                 'label' => 'Nom',

@@ -37,7 +37,7 @@ class AppFixtures extends Fixture
 
 
         // Create 50 users
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 110; $i++) {
             $user = new User();
             $user->setName("Invité" . $i)
                 ->setEmail("Invite" . $i . "@email.com")
@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $users[] = $user;
         }
-        // Create 50 media
+        // Create 200 media
         for ($i = 1; $i < 200; $i++) {
             $media = new Media();
             if (!($i % 8)) {
