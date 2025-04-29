@@ -31,3 +31,10 @@ Faudrait peut être trouver une meilleure solution car le fichier est très gros
 - symfony console doctrine:database:create --env=test
 - symfony console doctrine:migrations:migrate -n --env=test
 - symfony console doctrine:fixtures:load -n --purge-with-truncate --env=test
+
+# Fonctionnement du code
+
+- model MVC
+- pour les controllers quand on est admin il y a un dossier admin
+- il n'y a que l'admin qui peut modifier / bloquer / supprimer / ajouter un user
+- seul les images mis par l'admin dans un album provenant des users sont affichés
