@@ -38,4 +38,5 @@ class UserTest extends TestCase
         $this->assertFalse($user->isAdmin());
 
     }
+    
 }
