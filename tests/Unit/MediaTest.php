@@ -6,6 +6,7 @@ use App\Entity\Album;
 use App\Entity\Media;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class MediaTest extends TestCase
 {
@@ -13,6 +14,10 @@ class MediaTest extends TestCase
     public function testMedia(): void
     {
         $media = new Media();
+
+        $uploadedFile = new UploadedFile(__DIR__.'/../fixtures/0001.jpg', '0001.jpg');
+        $media->setFile($uploadedFile);
+        $this->assertInstanceOf(UploadedFile::class, $media->getFile());
 
         $media->setPath('/fixtures/0001.jpg');
         $this->assertEquals('/fixtures/0001.jpg', $media->getPath());
@@ -25,6 +30,7 @@ class MediaTest extends TestCase
 
         $media->setAlbum(new Album());
         $this->assertInstanceOf(Album::class, $media->getAlbum());
+
     }
 
 }

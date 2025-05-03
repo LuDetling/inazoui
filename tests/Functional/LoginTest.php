@@ -22,6 +22,19 @@ class LoginTest extends WebTestCase
 
         $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
         $this->assertResponseRedirects('/', Response::HTTP_FOUND);
+        
         $client->followRedirect();
+    }
+
+    public function testLogout(): void
+    {
+        $client = static::createClient();
+        $userRepository = $client->getContainer()->get(UserRepository::class);
+        $user = $userRepository->findOneBy(['name' => 'ina']);
+        $client->loginUser($user);
+
+        $crawler = $client->request('GET', '/logout');
+        $this->assertResponseRedirects('/', Response::HTTP_FOUND);
+        
     }
 }

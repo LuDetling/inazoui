@@ -62,6 +62,9 @@
             "migrations/.gitignore"
         ]
     },
+    "liip/test-fixtures-bundle": {
+        "version": "3.3.0"
+    },
     "phpstan/phpstan": {
         "version": "2.1",
         "recipe": {

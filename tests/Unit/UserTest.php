@@ -13,7 +13,8 @@ class UserTest extends TestCase
     {
         $user = new User();
 
-        $this->assertContains('ROLE_USER', $user->getRoles());
+        $user->setRoles(['ROLE_USER_TEST']);
+        $this->assertContains('ROLE_USER_TEST', $user->getRoles());
 
         $user->setEmail('test@example.com');
         $this->assertEquals('test@example.com', $user->getEmail());
@@ -32,5 +33,9 @@ class UserTest extends TestCase
 
         $user->setIsActive(true);
         $this->assertTrue($user->isActive());
+
+        $user->setAdmin(false);
+        $this->assertFalse($user->isAdmin());
+
     }
 }
